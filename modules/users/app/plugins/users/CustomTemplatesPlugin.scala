@@ -8,7 +8,7 @@ import securesocial.core.{Identity, SecuredRequest}
 import securesocial.controllers.PasswordChange.ChangeInfo
 import play.api.data._
 import play.api.i18n.Messages
-import play.api.libs.json.{JsObject, Json}
+import play.api.libs.json.{JsValue, JsObject, Json}
 import play.api.templates.{Txt, Html}
 import models.users.sorm.SormUserDb
 
@@ -17,8 +17,13 @@ class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPl
   implicit val changeInfoFormat = Json.format[ChangeInfo]
   implicit val registrationInfoFormat = Json.format[RegistrationInfo]
 
-  def toHtml(obj: JsObject): Html = {
-    Html(Json.stringify(obj))
+  def toHtml(jsValue: JsValue): Html = {
+    Html(Json.stringify(jsValue))
+  }
+
+  def processForm[T](form: Form[T]): Html = {
+    if (form.hasErrors) Html(form.errorsAsJson.toString())
+    else Html("")
   }
 
   override def getLoginPage[A](implicit request: Request[A], form: Form[(String, String)], errorMsg: Option[String] = None): Html = {
@@ -27,57 +32,16 @@ class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPl
         "message" -> Messages(message)
       ))
     ).getOrElse(
-      if (form.hasErrors) {
-        Html(form.errorsAsJson.toString())
-      } else {
-        var username: String = ""
-        var password: String = ""
-
-        form.value.map(g => {
-          username = g._1
-          password = g._2
-        })
-
-        toHtml(Json.obj(
-          "username" -> username,
-          "password" -> password
-        ))
-      }
+      processForm(form)
     )
   }
 
   override def getStartSignUpPage[A](implicit request: Request[A], form: Form[String]): Html = {
-    if (form.hasErrors)
-      Html(form.errorsAsJson.toString())
-    else {
-      var email: String = ""
-
-      form.value.map(e => email = e)
-
-      toHtml(Json.obj(
-        "form" -> Json.obj(
-          "email" -> email
-        )
-      ))
-    }
+    processForm(form)
   }
 
   override def getSignUpPage[A](implicit request: Request[A], form: Form[RegistrationInfo], token: String): Html = {
-    if (form.hasErrors) {
-      Html(form.errorsAsJson.toString())
-    } else {
-      val email = SormUserDb.findEmailByTokenUuid(token).getOrElse("")
-
-      var registrationInfo: RegistrationInfo = RegistrationInfo(None, "", "", "")
-
-      form.value.map(r => registrationInfo = r)
-
-      toHtml(Json.obj(
-          "email" -> email,
-          "form" -> registrationInfo,
-          "token" -> token
-        ))
-    }
+    processForm(form)
   }
 
   override def getStartResetPasswordPage[A](implicit request: Request[A], form: Form[String]): Html = {
@@ -87,24 +51,11 @@ class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPl
   }
 
   override def getResetPasswordPage[A](implicit request: Request[A], form: Form[(String, String)], token: String): Html = {
-//    form.value.map(v =>
-//      toHtml(Json.obj(
-//        "form" -> Json.obj(
-//          "password.password1" -> v._1,
-//          "password.password2" -> v._2
-//        ),
-//        "token" -> token
-//      ))
-//    ).getOrElse(
-//
-//      )
-    Html("")
+    processForm(form)
   }
 
   override def getPasswordChangePage[A](implicit request: SecuredRequest[A], form: Form[ChangeInfo]):Html = {
-    toHtml(Json.obj(
-      "email" -> form.get
-    ))
+    processForm(form)
   }
 
   override def getSignUpEmail(token: String)(implicit request: RequestHeader): (Option[Txt], Option[Html]) = {
