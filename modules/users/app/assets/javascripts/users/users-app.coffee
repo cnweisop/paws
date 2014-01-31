@@ -13,6 +13,10 @@ user.config [
       templateUrl: 'assets/users/partials/signup-start.tpl.html'
     $routeProvider.when '/signup/:token',
       templateUrl: 'assets/users/partials/signup.tpl.html'
+    $routeProvider.when '/reset',
+      templateUrl: 'assets/users/partials/reset-start.tpl.html'
+    $routeProvider.when '/reset/:token',
+      templateUrl: 'assets/users/partials/reset.tpl.html'
     $routeProvider.otherwise
       redirectTo: '/home'
 ]
@@ -52,13 +56,35 @@ user.controller 'SignUpCntl',
               $scope.form.errors["password.password2"] = response["password"]
 
 user.controller 'LoginCntl',
-    class LoginCntl
-      constructor: ($scope, $http, $location) ->
-        $scope.form = {} if $scope.form is undefined
+  class LoginCntl
+    constructor: ($scope, $http, $location) ->
+      $scope.form = {} if $scope.form is undefined
 
-        $scope.login = () ->
-          $http.post('users/authenticate/userpass', $scope.form)
-          .success () ->
-              $location.path("home")
-          .error (response) ->
-              $scope.form.errors = response
+      $scope.login = () ->
+        $http.post('users/authenticate/userpass', $scope.form)
+        .success () ->
+            $location.path("home")
+        .error (response) ->
+            $scope.form.errors = response
+
+user.controller 'PasswordCntl',
+  class PasswordCntl
+    constructor: ($scope, $http, $location, $routeParams) ->
+      $scope.form = {} if $scope.form is undefined
+
+      $scope.sendEmail = ->
+        $http.post('users/reset', $scope.form)
+        .success () ->
+            $location.path("login")
+        .error (response) ->
+            $scope.form.errors = response
+
+      $scope.reset = () ->
+        $http.post('users/reset/' + $routeParams.token, $scope.form)
+        .success () ->
+            $location.path("login")
+        .error (response) ->
+            $scope.form.errors = response
+
+            if (response["password"])
+              $scope.form.errors["password.password2"] = response["password"]

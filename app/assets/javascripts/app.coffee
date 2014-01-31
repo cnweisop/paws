@@ -8,10 +8,10 @@ paws = angular.module('paws', [
 paws.config [
   '$routeProvider',
   ($routeProvider) ->
-    $routeProvider.when '/index',
+    $routeProvider.when '/',
       templateUrl: 'assets/partials/index.tpl.html'
     $routeProvider.otherwise
-      redirectTo: '/index'
+      redirectTo: '/'
 ]
 
 paws.directive 'pawsInput', () ->
