@@ -4,12 +4,12 @@ First and foremost, this is currently in early alpha stages. Take as is.
 
 ## Setup and Notes
 
-- By default in play-domain models.sorm.SormDb is set to initMode = InitMode.DoNothing, change this to initMode = InitMode.Create to initialize the database
+- Change initMode = InitMode.DoNothing to initMode = InitMode.Create in models.user.sorm.SormDb to initialize the database
 - The smtp server is set to mock, so the outgoing emails will be logged in the console
 
 ## Updates
 
-- 2014-01-30: First pure AngularJs build
+- 2014-01-30: First pure AngularJs build, remove play-template project
 - 2014-01-24: Split the project into multiple modules. Views do not work!
 - 2014-01-21: Converted most screens to use AngularJs instead of full page reloads
 
@@ -25,11 +25,11 @@ First and foremost, this is currently in early alpha stages. Take as is.
 ## Technologies Used
 
 - [Scala 2.10](http://www.scala-lang.org/)
-- [Play 2.2](http://www.playframework.com/)
-- [SORM](https://github.com/sorm/sorm)
-- [SecureSocial](https://github.com/jaliss/securesocial)
+- [Play 2.2.1](http://www.playframework.com/)
+- [SORM 0.3.12](https://github.com/sorm/sorm)
+- [SecureSocial 2.1.3](https://github.com/jaliss/securesocial)
 - [AngularJs 1.2](http://angularjs.org/)
-- [Bootstrap 3.1](http://getbootstrap.com/)
+- [Bootstrap 3.1.0](http://getbootstrap.com/)
 - [CoffeeScript](http://coffeescript.org/)
 
 ## Known Issues

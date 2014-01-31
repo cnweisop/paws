@@ -2,7 +2,7 @@ import play.Project._
 
 name := "users"
 
-version := "1.0"
+version := "1.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.3.174",
