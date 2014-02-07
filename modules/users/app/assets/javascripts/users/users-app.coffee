@@ -70,6 +70,9 @@ user.controller 'LoginCntl',
         .success(() -> $location.path("/login"))
         .error(() -> $location.path("/login"))
 
+      $scope.logout = () ->
+        $http.get('users/logout').success(() -> $location.path("/login")).error(() -> $location.path("/login"))
+
 user.controller 'PasswordCntl',
   class PasswordCntl
     constructor: ($scope, $http, $location, $routeParams) ->
