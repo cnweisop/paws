@@ -2,13 +2,18 @@
 
 First and foremost, this is currently in early alpha stages. Take as is.
 
+## Follow Us on Twitter
+
+- [@knockingspirit](http://twitter.com/knockingspirit)
+- [@honaink](https://twitter.com/honaink)
+
 ## Setup and Notes
 
-- Change initMode = InitMode.DoNothing to initMode = InitMode.Create in models.user.sorm.SormDb to initialize the database
 - The smtp server is set to mock, so the outgoing emails will be logged in the console
 
 ## Updates
 
+- 2014-02-06: DB support is now a plugin, sub projected everything more
 - 2014-01-30: First pure AngularJs build, remove play-template project
 - 2014-01-24: Split the project into multiple modules. Views do not work!
 - 2014-01-21: Converted most screens to use AngularJs instead of full page reloads
@@ -42,9 +47,7 @@ First and foremost, this is currently in early alpha stages. Take as is.
 - Dynamic navigation menu
 - Password pages
 - Admin pages
-- Break out core data layer into a sub-project
 - Develop tests
-- Move database creation to the application.conf
 
 ## Generic Disclaimer
 
