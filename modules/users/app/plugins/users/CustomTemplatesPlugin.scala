@@ -8,9 +8,8 @@ import securesocial.core.{Identity, SecuredRequest}
 import securesocial.controllers.PasswordChange.ChangeInfo
 import play.api.data._
 import play.api.i18n.Messages
-import play.api.libs.json.{JsValue, JsObject, Json}
+import play.api.libs.json.{JsValue, Json}
 import play.api.templates.{Txt, Html}
-import models.users.sorm.SormUserDb
 
 
 class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPlugin(application) {

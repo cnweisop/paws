@@ -1,0 +1,4 @@
+GET        /                    controllers.Assets.at(path="/public", file="/html/index.html")
+
+
+GET        /assets/*file        controllers.Assets.at(path="/public", file)

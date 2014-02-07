@@ -5,7 +5,6 @@ import scala.io.Source
 import scala.util.Random
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
-import models.users.sorm.{SormDb, SormUserDb}
 import models.users.UserDb
 import securesocial.core._
 import securesocial.core.OAuth1Info
@@ -26,7 +25,7 @@ abstract class Users extends Controller with SecureSocial {
   def findEmailByTokenUuid(token: String) = Action {
     implicit request =>
       Ok(Json.stringify(Json.obj(
-        "email" -> SormUserDb.findEmailByTokenUuid(token)
+        "email" -> userDb.findEmailByTokenUuid(token)
       )))
   }
 
@@ -76,14 +75,14 @@ abstract class Users extends Controller with SecureSocial {
 
   def getUsers = SecuredAction {
     implicit request => {
-      val allUsers: List[SocialUser] = SormUserDb.findAll
+      val allUsers: List[SocialUser] = userDb.findAll
       Ok(Json.toJson(allUsers))
     }
   }
 
   def home(username: String) = Action {
     implicit request =>
-      SormDb.query[UserProfile].whereEqual("username", username).fetchOne()
+      userDb.findUserProfileByUsername(username)
         .map(userProfile =>
           Ok(Json.toJson(userProfile))
         ).getOrElse(

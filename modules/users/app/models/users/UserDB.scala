@@ -25,4 +25,6 @@ abstract class UserDb {
   def findAll: List[SocialUser]
 
   def findEmailByTokenUuid(tokenUuid: String): Option[String]
+
+  def findUserProfileByUsername(username: String): Option[UserProfile]
 }

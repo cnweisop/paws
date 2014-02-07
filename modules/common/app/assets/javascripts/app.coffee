@@ -14,7 +14,16 @@ paws.config [
       redirectTo: '/'
 ]
 
-paws.directive 'pawsInput', () ->
+paws.controller 'NavigationCntl',
+  class NavigationCntl
+    constructor: ($scope, $http) ->
+
+      $scope.default = ->
+        $http.get('default-navigation')
+        .success (response) ->
+            $scope = response
+
+paws.directive 'pawsInput', ->
   restrict: 'E'
   replace: 'true'
   scope:
@@ -29,21 +38,27 @@ paws.directive 'pawsInput', () ->
     errors: "="
   templateUrl: 'assets/partials/input.tpl.html'
 
-paws.directive 'pawsSubmit', () ->
+paws.directive 'pawsForm', ->
+  restrict: 'E'
+  scope:
+    controller: '='
+    submit: '='
+  
+paws.directive 'pawsSubmit', ->
   restrict: 'E'
   scope:
     class: '@'
     value: '@'
   templateUrl: 'assets/partials/submit.tpl.html'
 
-paws.directive 'pawsButton', () ->
+paws.directive 'pawsButton', ->
   restrict: 'E'
   scope:
     click: '@'
     value: '@'
   templateUrl: 'assets/partials/button.tpl.html'
 
-paws.directive 'pawsHeader', () ->
+paws.directive 'pawsHeader', ->
   restrict: 'E'
   scope:
     h1: '@'
@@ -52,6 +67,9 @@ paws.directive 'pawsHeader', () ->
     subtext: '@'
   templateUrl: 'assets/partials/header.tpl.html'
 
-paws.directive 'pawsNav', () ->
+paws.directive 'pawsNav', ->
   restrict: 'E'
+  replace: 'true'
+  scope:
+    nav: '='
   templateUrl: 'assets/partials/navigation.tpl.html'

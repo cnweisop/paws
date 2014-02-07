@@ -26,26 +26,26 @@ user.controller 'SignUpCntl',
     constructor: ($scope, $http, $location, $routeParams) ->
       $scope.form = {} if $scope.form is undefined
 
-      $scope.generateName = () ->
+      $scope.generateName = ->
         $http.get('users/generate-name')
         .success (response) ->
             $scope.form.firstName = response.firstName
             $scope.form.lastName = response.lastName
 
-      $scope.getEmail = () ->
+      $scope.getEmail = ->
         $http.get('users/email/' + $routeParams.token)
         .success (response) ->
             $scope.form.email = response.email
             $location.path("login") if response.email = null
 
-      $scope.sendEmail = () ->
+      $scope.sendEmail = ->
         $http.post('users/signup', $scope.form)
         .success () ->
             $location.path("login")
         .error (response) ->
             $scope.form.errors = response
 
-      $scope.signUp = () ->
+      $scope.signUp = ->
         $http.post('users/signup/' + $routeParams.token, $scope.form)
         .success () ->
             $location.path("login")
@@ -60,12 +60,15 @@ user.controller 'LoginCntl',
     constructor: ($scope, $http, $location) ->
       $scope.form = {} if $scope.form is undefined
 
-      $scope.login = () ->
+      $scope.login = ->
         $http.post('users/authenticate/userpass', $scope.form)
-        .success () ->
-            $location.path("home")
-        .error (response) ->
-            $scope.form.errors = response
+        .success () -> $location.path("home")
+        .error (response) -> $scope.form.errors = response
+
+      $scope.logout = () ->
+        $http.get('users/logout')
+        .success(() -> $location.path("/login"))
+        .error(() -> $location.path("/login"))
 
 user.controller 'PasswordCntl',
   class PasswordCntl
@@ -79,7 +82,7 @@ user.controller 'PasswordCntl',
         .error (response) ->
             $scope.form.errors = response
 
-      $scope.reset = () ->
+      $scope.reset = ->
         $http.post('users/reset/' + $routeParams.token, $scope.form)
         .success () ->
             $location.path("login")
