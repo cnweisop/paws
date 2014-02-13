@@ -1,6 +1,7 @@
 'use strict'
 
 paws = angular.module('paws', [
+  'ngResource',
   'ngRoute'
   'users'
 ])
@@ -14,14 +15,9 @@ paws.config [
       redirectTo: '/'
 ]
 
-paws.controller 'NavigationCntl',
-  class NavigationCntl
-    constructor: ($scope, $http) ->
-
-      $scope.default = ->
-        $http.get('default-navigation')
-        .success (response) ->
-            $scope = response
+paws.factory 'navigation',
+  ($resource) ->
+    $resource('navigation')
 
 paws.directive 'pawsInput', ->
   restrict: 'E'
@@ -69,7 +65,9 @@ paws.directive 'pawsHeader', ->
 
 paws.directive 'pawsNav', ->
   restrict: 'E'
-  replace: 'true'
   scope:
-    nav: '='
+    module: '@'
+    service: '@'
   templateUrl: 'assets/partials/navigation.tpl.html'
+  link: ($scope) ->
+    $scope.data = angular.injector([$scope.module]).get($scope.service).get(() -> $scope.$apply())
