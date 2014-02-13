@@ -62,8 +62,10 @@ user.controller 'LoginCntl',
 
       $scope.login = ->
         $http.post('users/authenticate/userpass', $scope.form)
-        .success () -> $location.path("home")
-        .error (response) -> $scope.form.errors = response
+        .success () ->
+            $location.path("home")
+        .error (response) ->
+            $scope.form.errors = response
 
       $scope.logout = () ->
         $http.get('users/logout')
