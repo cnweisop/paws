@@ -5,29 +5,25 @@ import models.common.{NavigationItem, NavigationMenu, Navigation}
 
 
 object Application extends Controller {
-  def navigation() = Action {
-    implicit request =>
-    val left =
+  def navigation() = Action { implicit request =>
+    val menus =
       Seq(
         NavigationMenu(
           Seq(
-            NavigationItem("PAWS", "/"),
             NavigationItem("Sign Up", "#/signup"),
             NavigationItem("Sign In", "#/login")
-          )
-        )
-      )
-
-    val right =
-      Seq(
+          ),
+          position = "left"
+        ),
         NavigationMenu(
           Seq(
             NavigationItem("Sign Out", "#/signout")
-          )
+          ),
+          position = "right"
         )
       )
 
-    val navigation = Navigation("default", left, right)
+    val navigation = Navigation("default", menus)
 
     Ok(Navigation.toJson(navigation))
   }
