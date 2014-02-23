@@ -1,5 +1,3 @@
-import sbt.Keys._
-
 name := "db"
 
 version := "1.0"
