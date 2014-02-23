@@ -13,6 +13,7 @@ First and foremost, this is currently in early alpha stages. Take as is.
 
 ## Updates
 
+- 2014-02-23: Added WebJars library dependencies. Now using RequireJS for AMD
 - 2014-02-06: DB support is now a plugin, sub projected everything more
 - 2014-01-30: First pure AngularJs build, remove play-template project
 - 2014-01-24: Split the project into multiple modules. Views do not work!
@@ -29,22 +30,22 @@ First and foremost, this is currently in early alpha stages. Take as is.
 
 ## Technologies Used
 
-- [Scala 2.10](http://www.scala-lang.org/)
-- [Play 2.2.1](http://www.playframework.com/)
-- [SORM 0.3.12](https://github.com/sorm/sorm)
+- [AngularJs 1.2.13](http://angularjs.org)
+- [Bootstrap 3.1.1](http://getbootstrap.com)
+- [CoffeeScript](http://coffeescript.org)
+- [Play 2.2.1](http://www.playframework.com)
+- [RequireJS 2.1.10](http://requirejs.org)
+- [Scala 2.10](http://www.scala-lang.org)
 - [SecureSocial 2.1.3](https://github.com/jaliss/securesocial)
-- [AngularJs 1.2](http://angularjs.org/)
-- [Bootstrap 3.1.0](http://getbootstrap.com/)
-- [CoffeeScript](http://coffeescript.org/)
+- [SORM 0.3.12](https://github.com/sorm/sorm)
+- [WebJars 2.2.1-2](http://www.webjars.org)
 
 ## Known Issues
 
-- Password pages do not work
-- tons of others
+- [See issues page](https://github.com/knockingspirit/paws/issues)
 
 ## In Progress
 
-- Dynamic navigation menu
 - Password pages
 - Admin pages
 - Develop tests
