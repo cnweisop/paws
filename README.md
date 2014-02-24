@@ -2,6 +2,12 @@
 
 First and foremost, this is currently in early alpha stages. Take as is.
 
+## Description
+
+This is a seed for single-page user driven web apps.
+The backend uses the play framework with securesocial for the authentication and security layer.
+The frontend uses AngularJs with Bootstrap for styling.
+
 ## Follow Us on Twitter
 
 - [@knockingspirit](http://twitter.com/knockingspirit)
