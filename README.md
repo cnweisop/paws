@@ -4,9 +4,9 @@ First and foremost, this is currently in early alpha stages. Take as is.
 
 ## Description
 
-This is a seed for single-page user driven web apps.
-The backend uses the play framework with securesocial for the authentication and security layer.
-The frontend uses AngularJs with Bootstrap for styling.
+This project aims to be a seed for single-page user driven web apps.
+The backend uses the Play Framework with SecureSocial for the authentication and security layer.
+The frontend uses AngularJS with Bootstrap CSS.
 
 ## Follow Us on Twitter
 
@@ -21,9 +21,9 @@ The frontend uses AngularJs with Bootstrap for styling.
 
 - 2014-02-23: Added WebJars library dependencies. Now using RequireJS for AMD
 - 2014-02-06: DB support is now a plugin, sub projected everything more
-- 2014-01-30: First pure AngularJs build, remove play-template project
+- 2014-01-30: First pure AngularJS build, remove play-template project
 - 2014-01-24: Split the project into multiple modules. Views do not work!
-- 2014-01-21: Converted most screens to use AngularJs instead of full page reloads
+- 2014-01-21: Converted most screens to use AngularJS instead of full page reloads
 
 ## Goals
 
@@ -36,7 +36,7 @@ The frontend uses AngularJs with Bootstrap for styling.
 
 ## Technologies Used
 
-- [AngularJs 1.2.13](http://angularjs.org)
+- [AngularJS 1.2.13](http://angularjs.org)
 - [Bootstrap 3.1.1](http://getbootstrap.com)
 - [CoffeeScript](http://coffeescript.org)
 - [Play 2.2.1](http://www.playframework.com)
@@ -52,6 +52,7 @@ The frontend uses AngularJs with Bootstrap for styling.
 
 ## In Progress
 
+- Slick DB implementation
 - Password pages
 - Admin pages
 - Develop tests
