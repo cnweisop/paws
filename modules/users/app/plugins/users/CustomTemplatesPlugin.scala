@@ -62,6 +62,10 @@ class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPl
   }
 
   override def getSendPasswordResetEmail(user: Identity, token: String)(implicit request: RequestHeader): (Option[Txt], Option[Html]) = {
-    (None, Option(Html("Go to http://" + request.host + "/#/reset/" + token)))
+    (None, Option(Html("Go to http://" + request.host + "/#/password/reset/" + token)))
+  }
+
+  override def getWelcomeEmail(user: Identity)(implicit request: RequestHeader): (Option[Txt], Option[Html]) = {
+    (None, Option(Html("Go to http://" + request.host)))
   }
 }

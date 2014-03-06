@@ -10,9 +10,32 @@ import securesocial.core._
 import securesocial.core.OAuth1Info
 import securesocial.core.IdentityId
 import models.users.UserProfile
+import models.common.{Navigation, NavigationItem, NavigationMenu}
 
 abstract class Users extends Controller with SecureSocial {
   val userDb: UserDb  // plugin appropriate implementation
+
+  def navigation() = SecuredAction { implicit request =>
+    val menus =
+      Seq(
+        NavigationMenu(
+          Seq(
+            NavigationItem("Change Password", "#/password/change")
+          ),
+          position = "left"
+        ),
+        NavigationMenu(
+          Seq(
+            NavigationItem("Sign Out", "#/signout")
+          ),
+          position = "right"
+        )
+      )
+
+    val navigation = Navigation("default", menus)
+
+    Ok(Navigation.toJson(navigation))
+  }
 
   def generateName() = Action {
     implicit request =>
@@ -35,9 +58,7 @@ abstract class Users extends Controller with SecureSocial {
 
     Source.fromInputStream(getClass.getResourceAsStream(path)).getLines().foreach(
       (name: String) => {
-        if (nameIndex == index) {
-          return name.capitalize
-        }
+        if (nameIndex == index) return name.capitalize
         index = index + 1
       })
     ""
