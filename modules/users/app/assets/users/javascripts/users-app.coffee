@@ -1,9 +1,10 @@
 'use strict'
 
 define(['angular'], (angular) ->
-  user = angular.module('users', [])
 
-  user.config [
+  users = angular.module('users', ['ngResource', 'ngRoute'])
+
+  users.config [
     '$routeProvider',
     ($routeProvider) ->
       $routeProvider.when '/home',
@@ -14,15 +15,21 @@ define(['angular'], (angular) ->
         templateUrl: 'users/partials/signup-start.tpl.html'
       $routeProvider.when '/signup/:token',
         templateUrl: 'users/partials/signup.tpl.html'
-      $routeProvider.when '/reset',
-        templateUrl: 'users/partials/reset-start.tpl.html'
-      $routeProvider.when '/reset/:token',
-        templateUrl: 'users/partials/reset.tpl.html'
+      $routeProvider.when '/password/reset',
+        templateUrl: 'users/partials/password-reset-start.tpl.html'
+      $routeProvider.when '/password/reset/:token',
+        templateUrl: 'users/partials/password-reset.tpl.html'
+      $routeProvider.when '/password/change',
+        templateUrl: 'users/partials/password-change.tpl.html'
       $routeProvider.otherwise
         redirectTo: '/home'
   ]
 
-  user.controller 'SignUpCntl',
+  users.factory 'navigation',
+    ($resource) ->
+      $resource('users/navigation')
+
+  users.controller 'SignUpCntl',
     class SignUpCntl
       constructor: ($scope, $http, $location, $routeParams) ->
         $scope.form = {} if $scope.form is undefined
@@ -56,7 +63,7 @@ define(['angular'], (angular) ->
               if (response["password"])
                 $scope.form.errors["password.password2"] = response["password"]
 
-  user.controller 'LoginCntl',
+  users.controller 'LoginCntl',
     class LoginCntl
       constructor: ($scope, $http, $location) ->
         $scope.form = {} if $scope.form is undefined
@@ -73,22 +80,32 @@ define(['angular'], (angular) ->
           .success(() -> $location.path("/login"))
           .error(() -> $location.path("/login"))
 
-  user.controller 'PasswordCntl',
+  users.controller 'PasswordCntl',
     class PasswordCntl
       constructor: ($scope, $http, $location, $routeParams) ->
         $scope.form = {} if $scope.form is undefined
 
         $scope.sendEmail = ->
-          $http.post('users/reset', $scope.form)
+          $http.post('users/password/reset', $scope.form)
           .success () ->
               $location.path("login")
           .error (response) ->
               $scope.form.errors = response
 
         $scope.reset = ->
-          $http.post('users/reset/' + $routeParams.token, $scope.form)
+          $http.post('users/password/reset/' + $routeParams.token, $scope.form)
           .success () ->
               $location.path("login")
+          .error (response) ->
+              $scope.form.errors = response
+
+              if (response["password"])
+                $scope.form.errors["password.password2"] = response["password"]
+
+        $scope.change = ->
+          $http.post('users/password/change')
+          .success () ->
+              $location.path("home")
           .error (response) ->
               $scope.form.errors = response
 
