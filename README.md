@@ -1,6 +1,4 @@
-# Play AngularJs Webapp Seed
-
-First and foremost, this is currently in early alpha stages. Take as is.
+# Play AngularJS Webapp Seed
 
 ## Description
 
@@ -25,15 +23,6 @@ The frontend uses AngularJS with Bootstrap CSS.
 - 2014-01-24: Split the project into multiple modules. Views do not work!
 - 2014-01-21: Converted most screens to use AngularJS instead of full page reloads
 
-## Goals
-
-- Create a generic starter template for user based websites
-- Security and data layer
-- Use less for css
-- Admin pages
-- Customize the outgoing securesocial emails
-- Customize the social providers (twitter, facebook, etc.) sign up and login piece.
-
 ## Technologies Used
 
 - [AngularJS 1.2.13](http://angularjs.org)
@@ -45,17 +34,6 @@ The frontend uses AngularJS with Bootstrap CSS.
 - [SecureSocial 2.1.3](https://github.com/jaliss/securesocial)
 - [SORM 0.3.12](https://github.com/sorm/sorm)
 - [WebJars 2.2.1-2](http://www.webjars.org)
-
-## Known Issues
-
-- [See issues page](https://github.com/knockingspirit/paws/issues)
-
-## In Progress
-
-- Slick DB implementation
-- Password pages
-- Admin pages
-- Develop tests
 
 ## Generic Disclaimer
 
