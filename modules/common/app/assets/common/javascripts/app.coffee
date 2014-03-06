@@ -66,6 +66,8 @@ require([
       h2: '@'
       lead: '@'
       subtext: '@'
+      navModule: '@'
+      navService: '@'
     templateUrl: 'common/partials/header.tpl.html'
 
   paws.directive 'pawsNav', ->
