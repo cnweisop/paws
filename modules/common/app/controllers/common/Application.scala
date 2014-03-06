@@ -16,12 +16,6 @@ object Application extends Controller {
             NavigationItem("Sign In", "#/login")
           ),
           position = "left"
-        ),
-        NavigationMenu(
-          Seq(
-            NavigationItem("Sign Out", "#/signout")
-          ),
-          position = "right"
         )
       )
 
