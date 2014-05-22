@@ -1,6 +1,8 @@
 name := "db"
 
-version := "1.0"
+version := "1.0-SNAPSHOT"
+
+resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.3.174",
