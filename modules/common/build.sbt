@@ -1,8 +1,8 @@
-import play.Project._
+organization := "so.paws"
 
 name := "common"
 
-version := "1.0"
+version := "1.0-SNAPSHOT"
 
 libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.2.1-2",
@@ -12,4 +12,4 @@ libraryDependencies ++= Seq(
   "org.webjars" % "requirejs" % "2.1.10"
 )
 
-playScalaSettings
+play.Project.playScalaSettings

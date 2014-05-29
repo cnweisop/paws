@@ -1,4 +1,4 @@
-import play.Project._
+organization := "so.paws"
 
 name := "users"
 
@@ -8,4 +8,4 @@ libraryDependencies ++= Seq(
   "ws.securesocial" %% "securesocial" % "2.1.3"
 )
 
-playScalaSettings
+play.Project.playScalaSettings

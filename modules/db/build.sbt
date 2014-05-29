@@ -1,3 +1,5 @@
+organization := "so.paws"
+
 name := "db"
 
 version := "1.0-SNAPSHOT"
