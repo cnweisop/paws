@@ -29,8 +29,8 @@ define(['angular'], (angular) ->
     ($resource) ->
       $resource('users/navigation')
 
-  users.controller 'SignUpCntl',
-    class SignUpCntl
+  users.controller 'SignUpController',
+    class SignUpController
       constructor: ($scope, $http, $location, $routeParams) ->
         $scope.form = {} if $scope.form is undefined
 
@@ -63,8 +63,8 @@ define(['angular'], (angular) ->
               if (response["password"])
                 $scope.form.errors["password.password2"] = response["password"]
 
-  users.controller 'LoginCntl',
-    class LoginCntl
+  users.controller 'LoginController',
+    class LoginController
       constructor: ($scope, $http, $location) ->
         $scope.form = {} if $scope.form is undefined
 
@@ -80,8 +80,8 @@ define(['angular'], (angular) ->
           .success(() -> $location.path("/login"))
           .error(() -> $location.path("/login"))
 
-  users.controller 'PasswordCntl',
-    class PasswordCntl
+  users.controller 'PasswordController',
+    class PasswordController
       constructor: ($scope, $http, $location, $routeParams) ->
         $scope.form = {} if $scope.form is undefined
 

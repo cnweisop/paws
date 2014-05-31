@@ -1,6 +1,6 @@
 <paws-header h1="Sign In" lead="Sign in to view your home page."></paws-header>
 
-<form ng-controller="LoginCntl" ng-submit="login()" class="form-container" ng-class='{"has-error": form.errors.message != null}'>
+<form ng-controller="LoginController" ng-submit="login()" class="form-container" ng-class='{"has-error": form.errors.message != null}'>
     <paws-input
             name="username"
             model="form.username"
