@@ -10,7 +10,7 @@ import securesocial.core._
 import securesocial.core.OAuth1Info
 import securesocial.core.IdentityId
 import models.users.UserProfile
-import models.common.{Navigation, NavigationItem, NavigationMenu}
+import models.web.{Navigation, NavigationItem, NavigationMenu}
 
 abstract class Users extends Controller with SecureSocial {
   val userDb: UserDb  // plugin appropriate implementation

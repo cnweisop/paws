@@ -23,4 +23,5 @@ POST        /password/change               securesocial.controllers.PasswordChan
 POST        /authenticate/:provider        securesocial.controllers.ProviderController.authenticateByPost(provider)
 GET         /not-authorized                securesocial.controllers.ProviderController.notAuthorized
 
-GET         /*file                         controllers.users.Assets.at(path="/public/users", file)
+GET         /vassets/*file                 controllers.Assets.versioned(path="/public/users", file: Asset)
+GET         /assets/*file                  controllers.Assets.at(path="/public/users", file)

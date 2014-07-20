@@ -61,6 +61,7 @@ object SlickUserDb extends UserDb {
 
   def save(token: Token) = {
     db.save(token)
+    ()
   }
 
   def findToken(uuid: String): Option[Token] = {
@@ -69,6 +70,7 @@ object SlickUserDb extends UserDb {
 
   def deleteToken(uuid: String) {
     findToken(uuid).map(e => db.delete(e))
+    ()
   }
 
   def deleteExpiredTokens() {

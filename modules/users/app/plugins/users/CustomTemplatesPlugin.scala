@@ -1,5 +1,6 @@
 package plugins.users
 
+import play.twirl.api.{Txt, Html}
 import securesocial.controllers.DefaultTemplatesPlugin
 import play.api.Application
 import play.api.mvc.{RequestHeader, Request}
@@ -9,7 +10,6 @@ import securesocial.controllers.PasswordChange.ChangeInfo
 import play.api.data._
 import play.api.i18n.Messages
 import play.api.libs.json.{JsValue, Json}
-import play.api.templates.{Txt, Html}
 
 
 class CustomTemplatesPlugin(application: Application) extends DefaultTemplatesPlugin(application) {

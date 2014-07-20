@@ -8,19 +8,19 @@ define(['angular'], (angular) ->
     '$routeProvider',
     ($routeProvider) ->
       $routeProvider.when '/home',
-        templateUrl: 'users/partials/home.tpl.html'
+        templateUrl: 'users/vassets/partials/home.tpl.html'
       $routeProvider.when '/login',
-        templateUrl: 'users/partials/login.tpl.html'
+        templateUrl: 'users/vassets/partials/login.tpl.html'
       $routeProvider.when '/signup',
-        templateUrl: 'users/partials/signup-start.tpl.html'
+        templateUrl: 'users/vassets/partials/signup-start.tpl.html'
       $routeProvider.when '/signup/:token',
-        templateUrl: 'users/partials/signup.tpl.html'
+        templateUrl: 'users/vassets/partials/signup.tpl.html'
       $routeProvider.when '/password/reset',
-        templateUrl: 'users/partials/password-reset-start.tpl.html'
+        templateUrl: 'users/vassets/partials/password-reset-start.tpl.html'
       $routeProvider.when '/password/reset/:token',
-        templateUrl: 'users/partials/password-reset.tpl.html'
+        templateUrl: 'users/vassets/partials/password-reset.tpl.html'
       $routeProvider.when '/password/change',
-        templateUrl: 'users/partials/password-change.tpl.html'
+        templateUrl: 'users/vassets/partials/password-change.tpl.html'
       $routeProvider.otherwise
         redirectTo: '/home'
   ]

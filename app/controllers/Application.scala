@@ -1,12 +1,14 @@
-package controllers.common
+package controllers
 
+import models.web.{Navigation, NavigationItem, NavigationMenu}
 import play.api.mvc.{Action, Controller}
-import models.common.{NavigationItem, NavigationMenu, Navigation}
-import play.api.templates.Html
-import play.api.http.MimeTypes
 
 
 object Application extends Controller {
+  def index = Action {
+    Ok(views.html.index())
+  }
+
   def navigation() = Action { implicit request =>
     val menus =
       Seq(
@@ -22,9 +24,5 @@ object Application extends Controller {
     val navigation = Navigation("default", menus)
 
     Ok(Navigation.toJson(navigation))
-  }
-
-  def setupRequireJs = Action {
-    Ok(org.webjars.RequireJS.getSetupJavaScript("/webjars/")).as(MimeTypes.JAVASCRIPT)
   }
 }

@@ -1,13 +1,13 @@
-package models.common.sorm
+package models.web.sorm
 
 import so.paws.db.sorm.SormEntities
 import sorm.Entity
-import models.common.{NavigationItem, NavigationMenu, Navigation}
+import models.web.{NavigationItem, NavigationMenu, Navigation}
 
 /**
  * Created by jd on 2/5/14.
  */
-object CommonSormEntities extends SormEntities {
+object WebSormEntities extends SormEntities {
   override def get: Set[Entity] = {
     Set(
       Entity[Navigation](unique = Set() + Seq("page")),
